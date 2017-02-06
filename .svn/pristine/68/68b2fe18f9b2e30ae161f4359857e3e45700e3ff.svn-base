@@ -1,0 +1,11 @@
+url=jdbc:mysql://192.168.17.177:3306/kefu
+driver=com.mysql.jdbc.Driver
+user=u_kefu
+password=u_kefu
+maxActive=100
+maxIdle=20
+minIdle=5
+maxWait=30000
+removeAbandoned=true
+removeAbandonedTimeout=30000
+logAbandoned=false

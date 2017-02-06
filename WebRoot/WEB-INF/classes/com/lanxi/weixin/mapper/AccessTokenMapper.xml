@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.lanxi.weixin.mapper.AccessTokenMapper">
+ 	<insert id="insertAccessToken" parameterType="com.lanxi.weixin.bean.menu.AccessTokenBean">
+ 		insert into weixin_access_token(access_token,createTime,expires_in)
+ 		 values(#{access_token},#{createTime},#{expires_in})
+ 	</insert>
+ 
+ 	<select id="getAccessToken" resultType="com.lanxi.weixin.bean.menu.AccessTokenBean">
+ 		SELECT * from weixin_access_token ORDER BY createTime desc limit 0,1
+ 	</select>
+ </mapper>

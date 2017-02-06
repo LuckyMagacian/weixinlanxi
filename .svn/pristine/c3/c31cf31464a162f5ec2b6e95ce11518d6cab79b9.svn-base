@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.lanxi.weixin.mapper.GamePrizeMapper">
+ 
+ 	<select id="getGamePrize" parameterType="com.lanxi.weixin.bean.GamePrizeBean" resultType="com.lanxi.weixin.bean.GamePrizeBean">
+ 		select * from weixin_game_prize where gameType=#{gameType} and prizeGrade=#{prizeGrade}
+ 	</select>
+ 	
+ </mapper>

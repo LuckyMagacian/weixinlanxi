@@ -1,0 +1,225 @@
+@charset "utf-8";
+
+body {
+	background-color: #e5e5e5;
+	margin: auto 0;
+}
+
+html,body {
+	width: 100%;
+	height: 100%;
+	font-family: "微软雅黑", "Microsoft YaHei", sans-serif,
+		'Microsoft Sans Serif', 'Microsoft JhengHei UI';
+}
+
+.button {
+	width: 100px;
+	height: 30px;
+	border-radius: 5px 5px;
+	background-color: #198fd4;
+	color: white;
+	font-size: 1em;
+	text-align: center;
+	line-height: 30px;
+	display: inline-block;
+}
+
+.center {
+	text-align: center;
+}
+
+a {
+	text-decoration: none;
+	color: #0052b1;
+}
+
+.icon-ok {
+	background: url(../img/codeCheck/ok.png) no-repeat;
+	display: inline-block;
+}
+
+.icon-no {
+	background: url(../img/codeCheck/no.png) no-repeat;
+	display: inline-block;
+}
+
+.icon-cancel {
+	background: url(../img/codeCheck/cancel.png) no-repeat;
+	display: inline-block;
+}
+
+.hidden {
+	display: none;
+}
+
+/*header*/
+header {
+	
+}
+
+#bgApp {
+	width: 100%;
+	height: auto;
+}
+
+#headerBg {
+	height: 65px;
+	background-color: black;
+	opacity: 0.35;
+	filter: alpha(opacity =   35);
+	-moz-opacity: 0.35;
+	-webkit-opacity: 0.35;
+}
+
+#headerTitle {
+	font-family: "微软雅黑";
+	line-height: 25px;
+	font-size: 1.4em;
+	color: white;
+	text-align: left;
+	vertical-align: middle;
+	position: relative;
+    top: -58px;
+    margin-left: 40px;
+}
+
+/* content */
+.content {
+	min-height: 330px;
+}
+
+.content>p {
+	text-indent: 2em;
+}
+
+#form {
+	margin: 10px 8px 4px 8px;
+}
+
+#form input {
+	height: 26px;
+	min-width: 240px;
+	margin-top: 2px;
+	padding: 1px 4px 1px 4px;
+	display: inline-block;
+	font-size: .95em;
+	letter-spacing: 1px;
+}
+
+#form label {
+	padding-left: 8px;
+	width: 240px;
+	font-size: 1.05em;
+}
+
+.formGroup {
+	padding-top:10px;
+	margin-bottom: 4px;
+}
+
+#formBtn {
+	height: 33px !important;
+	width: 220px !important;
+	margin-left: 20px;
+}
+
+#ajaxBtn {
+	width: 220px;
+	margin-left: 20px;
+}
+
+.icon {
+	height: 16px;
+	width: 16px;
+	vertical-align: middle;
+	margin: 3px;
+}
+
+#text {
+	font-size: .75em;
+	color: red;
+	margin-bottom: 4px;
+}
+
+#attention {
+	margin-top:10px;
+	margin-bottom: 8px;
+}
+
+#attention>p {
+	text-align: left;
+	margin: 0 auto;
+	font-family: "微软雅黑";
+	font-size: .9em;
+	color: #666;
+}
+#btn{
+	margin-top:10px;
+}
+/* footer */
+.copyright {
+	text-align: center;
+}
+
+.copyright>span {
+	text-align: center;
+	color: #7F8082;
+	font-size: 0.875em;
+}
+
+.copyright strong {
+	color: #4d74b5;
+	font-size: 1.125em;
+}
+
+.failColor {
+	color: red;
+}
+
+.successColor {
+	color: #329966;
+}
+
+/* 页面适配 */
+@media only screen and (max-width: 767px) {
+	header {
+		height: 170px;
+		background: url(../img/codeCheck/bg_640.jpg) no-repeat;
+		background-size: 100%;
+		min-width: 315px;
+	}
+	#headerBg {
+		margin-top: 68px;
+	}
+	#form input{
+		min-width: 200px;
+		width:84%;
+	}
+	#form label {
+		display: block;
+		text-align: left;
+	}
+	.content {
+		width: 310px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	#form {
+		text-align: center;
+	}
+	#form label {
+		display: inline-block;
+		text-align: right;
+	}
+	#attention {
+		width: 360px;
+		margin-right: auto;
+		margin-left: auto;
+	}
+	.successColor,.failColor {
+		text-align: center;
+	}
+}

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"  
+	xmlns:jee="http://www.springframework.org/schema/jee" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+	
+	<bean id="systemInitManager" class="com.lanxi.weixin.manager.SystemInitManager"></bean>
+	
+	<!-- 配置多个数据源 -->
+	<!-- <util:properties id="jdbc" location="classpath:jdbc.properties"/>
+	<util:properties id="jdbc2" location="classpath:jdbc2.properties"/>
+	<util:properties id="jdbc3" location="classpath:jdbc3.properties"/>
+		
+	<bean id="dataSource1" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="url" value="#{jdbc.url}"/>
+		<property name="driverClassName" value="#{jdbc.driver}"/>
+		<property name="username" value="#{jdbc.user}"/>
+		<property name="password" value="#{jdbc.password}"/>
+		<property name="maxActive" value="#{jdbc.maxActive}"/>
+		<property name="maxIdle" value="#{jdbc.maxIdle}"/>
+		<property name="minIdle" value="#{jdbc.minIdle}"/>
+		<property name="maxWait" value="#{jdbc.maxWait}"/>
+		<property name="removeAbandoned" value="#{jdbc.removeAbandoned}"/>
+		<property name="removeAbandonedTimeout" value="#{jdbc.removeAbandonedTimeout}"/>
+		<property name="logAbandoned" value="#{jdbc.logAbandoned}"/>
+	</bean>
+	
+	<bean id="dataSource2" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="url" value="#{jdbc2.url}"/>
+		<property name="driverClassName" value="#{jdbc2.driver}"/>
+		<property name="username" value="#{jdbc2.user}"/>
+		<property name="password" value="#{jdbc2.password}"/>
+		<property name="maxActive" value="#{jdbc2.maxActive}"/>
+		<property name="maxIdle" value="#{jdbc2.maxIdle}"/>
+		<property name="minIdle" value="#{jdbc2.minIdle}"/>
+		<property name="maxWait" value="#{jdbc2.maxWait}"/>
+		<property name="removeAbandoned" value="#{jdbc2.removeAbandoned}"/>
+		<property name="removeAbandonedTimeout" value="#{jdbc2.removeAbandonedTimeout}"/>
+		<property name="logAbandoned" value="#{jdbc2.logAbandoned}"/>
+	</bean>
+	
+	<bean id="dataSource3" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="url" value="#{jdbc3.url}"/>
+		<property name="driverClassName" value="#{jdbc3.driver}"/>
+		<property name="username" value="#{jdbc3.user}"/>
+		<property name="password" value="#{jdbc3.password}"/>
+		<property name="maxActive" value="#{jdbc3.maxActive}"/>
+		<property name="maxIdle" value="#{jdbc3.maxIdle}"/>
+		<property name="minIdle" value="#{jdbc3.minIdle}"/>
+		<property name="maxWait" value="#{jdbc3.maxWait}"/>
+		<property name="removeAbandoned" value="#{jdbc3.removeAbandoned}"/>
+		<property name="removeAbandonedTimeout" value="#{jdbc3.removeAbandonedTimeout}"/>
+		<property name="logAbandoned" value="#{jdbc3.logAbandoned}"/>
+	</bean>
+	
+	配置多数据源
+	<bean id="multipleDataSource" class="com.lanxi.weixin.utils.MultipleDataSource">
+        <property name="defaultTargetDataSource" ref="dataSource1"/>
+        <property name="targetDataSources">
+            <map>
+                <entry key="dataSource1" value-ref="dataSource1"/>
+                <entry key="dataSource2" value-ref="dataSource2"/>
+                <entry key="dataSource3" value-ref="dataSource3"/>
+            </map>
+        </property>
+    </bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="multipleDataSource"/>
+		<property name="mapperLocations" value="classpath:com/lanxi/weixin/mapper/*.xml"/>
+	</bean> -->
+	
+	<!-- 配置单个数据源 -->
+	<util:properties id="jdbc" location="classpath:jdbc.properties"/>
+		
+	<bean id="ds" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="url" value="#{jdbc.url}"/>
+		<property name="driverClassName" value="#{jdbc.driver}"/>
+		<property name="username" value="#{jdbc.user}"/>
+		<property name="password" value="#{jdbc.password}"/>
+		<property name="maxActive" value="#{jdbc.maxActive}"/>
+		<property name="maxIdle" value="#{jdbc.maxIdle}"/>
+		<property name="minIdle" value="#{jdbc.minIdle}"/>
+		<property name="maxWait" value="#{jdbc.maxWait}"/>
+		<property name="removeAbandoned" value="#{jdbc.removeAbandoned}"/>
+		<property name="removeAbandonedTimeout" value="#{jdbc.removeAbandonedTimeout}"/>
+		<property name="logAbandoned" value="#{jdbc.logAbandoned}"/>
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="ds"/>
+		<property name="mapperLocations" value="classpath:com/lanxi/weixin/mapper/*.xml"/>
+	</bean>
+	
+	<bean id="dataSourceCode" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="url" value="#{jdbc.urlCode}"/>
+		<property name="driverClassName" value="#{jdbc.driver}"/>
+		<property name="username" value="#{jdbc.userCode}"/>
+		<property name="password" value="#{jdbc.passwordCode}"/>
+		<property name="maxActive" value="#{jdbc.maxActive}"/>
+		<property name="maxIdle" value="#{jdbc.maxIdle}"/>
+		<property name="minIdle" value="#{jdbc.minIdle}"/>
+		<property name="maxWait" value="#{jdbc.maxWait}"/>
+		<property name="removeAbandoned" value="#{jdbc.removeAbandoned}"/>
+		<property name="removeAbandonedTimeout" value="#{jdbc.removeAbandonedTimeout}"/>
+		<property name="logAbandoned" value="#{jdbc.logAbandoned}"/>
+		<property name="timeBetweenEvictionRunsMillis" value="#{jdbc.timeBetweenEvictionRunsMillis}" />
+		<property name="validationQuery" value="#{jdbc.validationQuery}" />
+		<property name="testWhileIdle" value="#{jdbc.testWhileIdle}" />
+		<property name="testOnBorrow" value="#{jdbc.testOnBorrow}" />
+		<property name="testOnReturn" value="#{jdbc.testOnReturn}" />
+	</bean>
+
+	<bean id="sqlSessionFactoryCode" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSourceCode"/>
+		<property name="mapperLocations" value="classpath:com/lanxi/weixin/codeMapper/*.xml"/>
+	</bean>
+
+	<!-- 配置数据源结束 -->
+	
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.lanxi.weixin.mapper"/>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.lanxi.weixin.codeMapper"/>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryCode" />
+	</bean>
+
+	<!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
+	<bean id="transactionManagerCode"
+		  class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSourceCode"/>
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManagerCode" />
+
+	<context:component-scan base-package="com.lanxi.weixin"/>
+	<mvc:annotation-driven/>
+	<!-- 配置试图解析器 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>	
+	<!-- 配置文件上传 -->
+	<context:component-scan base-package="org.springframework.web.fileupload"/>
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="10000000"/>
+	</bean>
+	<!-- 拦截器配置 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*/*"/>
+			<bean class="com.lanxi.weixin.interceptor.SessionTimeoutInterceptor">
+				<property name="allowUrls">
+					<list>
+						<value>/login/login.do</value> 
+                		<value>/login/checkLogin.do</value>
+                		<value>/login/logout.do</value>
+             			<value>/css</value> 
+              			<value>/dakaFile</value>  
+              			<value>/doc</value>  
+              			<value>/editor</value>  
+              			<value>/images</value>
+			 			<value>/js</value>
+			 			<value>/ui</value>
+			 			<value>/uploadfiles</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors>	
+		
+</beans>

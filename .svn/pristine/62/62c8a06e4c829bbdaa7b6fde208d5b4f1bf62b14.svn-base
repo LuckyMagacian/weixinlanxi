@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.lanxi.weixin.mapper.UserTicketDealMapper">
+ 	<select id="getReplicationNum" parameterType="com.lanxi.weixin.bean.UserTicketDealBean" resultType="java.lang.Integer">
+ 		select count(*) from weixin_user_ticket_deal where openid=#{openid} and fromUserName=#{fromUserName} and event=#{event}
+ 	</select>
+ 
+ 	<insert id="insertUserTicketDeal" parameterType="com.lanxi.weixin.bean.UserTicketDealBean">
+ 		insert into weixin_user_ticket_deal(openid,fromUserName,event,createTime) values(#{openid},#{fromUserName},#{event},#{createTime})
+ 	</insert>
+ </mapper>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.lanxi.weixin.mapper.OrderMapper">
+ 	
+ 	<insert id="insertOrder" parameterType="com.lanxi.weixin.bean.OrderBean">
+ 		insert into weixin_order(orderId,organizeId,phone,dealId,spbh,spsl,orderStatus,sendNum,maxNum,orderDate,orderTime)
+ 		 values(#{orderId},#{organizeId},#{phone},#{dealId},#{spbh},#{spsl},#{orderStatus},#{sendNum},#{maxNum},#{orderDate},#{orderTime})
+ 	</insert>
+ 
+ 	<update id="updateOrder" parameterType="com.lanxi.weixin.bean.OrderBean">
+ 		update weixin_order set orderStatus=#{orderStatus},sendNum=#{sendNum},retCode=#{retCode},retMsg=#{retMsg},dealId=#{dealId} where orderId=#{orderId}
+ 	</update>
+ </mapper>

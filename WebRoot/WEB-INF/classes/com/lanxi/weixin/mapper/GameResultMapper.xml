@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.lanxi.weixin.mapper.GameResultMapper">
+ 	
+ 	<insert id="insertGameResult" parameterType="com.lanxi.weixin.bean.GameResultBean">
+ 		insert into weixin_game_result(openid,gameType,probability,result,createTime) 
+ 		 values(#{openid},#{gameType},#{probability},#{result},#{createTime})
+ 	</insert>
+ 	
+ 	<!-- 有使用到mysql的时间函数和时间类型转换 
+ 		date_format(current_date(),'%Y%m%d')	将当前日期装换成yyyyMMdd格式
+ 		SUBSTR(createTime,1,8)					分割字符串，从yyyyMMddHHmmss格式数据中截取yyyyMMdd格式数据
+ 	-->
+ 	<select id="getTurnTableDayCountByOpenid" parameterType="java.lang.String" resultType="java.lang.Integer">
+ 		SELECT count(*) from weixin_game_result 
+	where gameType='TurnTable' and SUBSTR(createTime,1,8)=date_format(current_date(),'%Y%m%d') and openid=#{openid}
+ 	</select>
+ 	
+ 	<select id="getGameDayCount" parameterType="com.lanxi.weixin.bean.GameResultBean" resultType="java.lang.Integer">
+ 		SELECT count(*) from weixin_game_result 
+	where gameType=#{gameType} and SUBSTR(createTime,1,8)=date_format(current_date(),'%Y%m%d') and openid=#{openid}
+ 	</select>
+ </mapper>

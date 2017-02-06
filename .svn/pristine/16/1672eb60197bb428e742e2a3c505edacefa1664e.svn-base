@@ -1,0 +1,339 @@
+@charset "utf-8";
+
+html,body{
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	font-family: Helvetica, YouYuan;
+}
+body{
+	background-color: #e4eaf1;
+}
+.button {
+	width: 60px;
+	height: 26px;
+	border-radius: 5px 5px;
+	font-size: 0.8em;
+	text-align: center;
+	line-height: 27px;
+	display: inline-block;
+	text-decoration: none;
+	float: right;
+    margin-top: 15px;
+    margin-right: 5px;
+}
+.btn-red{
+	color:#a91f24;
+	border:1px solid #a91f24;
+}
+.btn-blue{
+	color:#1674d4;
+	border:1px solid #1674d4;
+}
+.color999{
+	color:#999;
+}
+.hidden{
+	display: none !important;
+}
+/*header*/
+header{
+	background-color: white;
+	    padding: 0px 8px 1px 12px;
+	border-top: 1px solid #ccc;
+	border-bottom:1px solid #ccc;
+	
+}
+#headerPic{
+	width: 70px;
+	height: 70px;
+	/* border-radius: 10px; */
+	overflow: hidden;
+	display: inline-block;
+	vertical-align: middle;
+}
+#headerPic>img{
+	width: 100%;
+}
+#text{
+	display: inline-block;
+	height: 70px;
+	line-height: 26px;
+	vertical-align: middle;
+	padding-top: 15px;
+	padding-left: 8px;
+}
+#text>p{
+	margin: 0;
+	padding:1px;
+}
+#nickname{
+	font-size: 1.28em;
+}
+#codePic{
+	display: inline-block;
+	    float: right;
+    margin: 24px 11px;
+}
+#codePic>img{
+	cursor: pointer;
+	height:34px;
+	width:34px;
+}
+
+/*content*/
+.focusList{
+	color:#c36a00 !important;
+	border-bottom:2px solid #d38600;
+}
+#btnList{
+	border-top: 1px solid #ccc;
+	border-bottom:1px solid #ccc;
+	background-color: white;
+	margin:15px 0px;
+}
+#btnList>div{
+	width:48%;
+	display:inline-block;
+	text-align: center;
+}
+#btnList>div>label{
+	display: inline-block;
+	width: 100px;
+    line-height: 34px;
+    height: 34px;
+    position: relative;
+    top: 1px;
+    color:#9b9b9b;
+    cursor: pointer;
+}
+.region{
+	margin-top: 15px;
+	background-color: white;
+	margin-left: 8px;
+    margin-right: 8px;
+    -webkit-box-shadow:0px 1px 2px #808185;
+    -moz-box-shadow:0px 1px 2px #808185;
+    -o-box-shadow:0px 1px 2px #808185;
+    box-shadow:0px 1px 2px #808185;
+}
+#hotGame,#hotActive{
+	height:36px
+}
+#hotGame>img,#hotActive>img{
+	width:89px;
+	height:auto;
+	position: relative;
+    top: 5px;
+    left: -5px;
+}
+.row{
+	background-color: white;
+	padding: 10px 0px;
+    margin: 0px 6px;
+    border-top: 1px solid #ccc;
+}
+.gamePic{
+	width: 60px;
+	height: 60px;
+	border-radius: 4px;
+	overflow: hidden;
+	display: inline-block;
+	vertical-align: middle;
+}
+.gamePic>img{
+	width: 100%;
+}
+.gameText{
+	display: inline-block;
+	height: 60px;
+	vertical-align: middle;
+	max-width:160px;
+	}
+.gameText>p{
+	margin: 0;
+	/* padding: 1px; */
+	margin-left:5px;
+	line-height:32px;
+	overflow: hidden;
+}
+#listLine{
+	width: 1px !important;
+    height: 30px;
+    line-height: 30px;
+    background-color: #ccc;
+    vertical-align: middle;
+}
+.introduce{
+	color: #666;
+    font-size: 0.7em;
+    line-height: 13px !important;
+    height: 26px;
+}
+.introduce:after{
+	content:"...";
+}
+
+
+/* 获奖列表 */
+.prizeRow{
+	height:100px;
+	background-color:white;
+	/*  margin-top: 15px; */
+	-webkit-box-shadow:0px 0px 4px #808185;
+    -moz-box-shadow:0px 0px 4px #808185;
+    -o-box-shadow:0px 0px 4px #808185;
+    box-shadow:0px 0px 4px #808185;
+}
+.prizeInfo{
+	padding:4px 0px;
+	display: inline-block;
+}
+.prizeInfo>p{
+	margin:5px 15px;
+	font-size: 0.85em;
+}
+.prizeBtn{
+	display: inline-block;
+    float: right;
+    background-color: #a4a4a4;
+    color: white;
+    vertical-align: middle;
+    height: 100px;
+    line-height: 100px;
+    width: 45px;
+    text-align: center;
+}
+.btn-yes{
+	background-color: #eb6100 !important;
+	cursor: pointer;
+}
+.shadow{
+	background: url(../img/gameIndex/shadow.png) no-repeat;
+	overflow: hidden;
+	background-position: left;
+	height:15px;
+	width:100%;
+}
+
+/* footer */
+.copyright{
+	text-align: center;
+	color:gray;
+	font-size:0.8em;
+	margin: 5px auto 8px auto;
+}
+
+/* dialog */
+#fullBlack {
+	z-index: 1001;
+	background-color: black;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	filter: alpha(opacity=50);
+	-moz-opacity: 0.5;
+	-khtml-opacity: 0.5;
+	-webkit-opacity: 0.5;
+	opacity: 0.5;
+}
+#codeDialog,#prizeDialog{
+    height: auto;
+    position: absolute;
+    left: 0;
+    top: 100px;
+    right: 0;
+    display: block;
+    text-align: center;
+    background-color: white;
+    z-index: 1003;
+    margin: auto;
+    border-radius: 4px;
+}
+#prizeDialog{
+	width:300px;
+}
+#codeDialog{
+	width: 240px;
+}
+#codePicSrc{
+	width:230px;
+	height:230px;
+}
+#codeDialog{
+	
+}
+#codeDialog label{
+	color: #666;
+    font-size: 0.9em;
+    margin-bottom: 12px;
+    display: block;
+}
+.modelHeader {
+	height: 45px;
+	line-height: 45px;
+	font-weight: bold;
+	text-align: center;
+	border-bottom: #e8e8ea solid 1px;
+	color: #303031;
+}
+.modelHeader>p{
+	
+}
+
+.modelFooter {
+	height: 42px;
+	line-height: 37px;
+	border-top: #e8e8ea solid 1px;
+	text-align: center;
+}
+.modelBtn {
+	height: 38px;
+	margin-bottom:2px;
+	font-size: 15px;
+	/* font-weight: bold; */
+	color: #333;
+	cursor: pointer;
+	text-align: center;
+	display: inline-block;
+	width: 49%;
+}
+.modelBtn:hover {
+	background-color: #eee;
+}
+
+#prizeHint {
+	font-size: 0.75em;
+	color: #e50a0a;
+}
+#dialogHint {
+	font-size: 0.7em;
+    color: red;
+    text-align: center;
+    display: block;
+    mmargin-bottom:8px;
+}
+
+.inputSussess {
+	border:1px solid #3c763d !important;
+}
+
+.inputError {
+	border:1px solid #a94442 !important;
+}
+#prizePhone{
+	height: 24px;
+    padding: 1px 2px 1px 4px;
+}
+
+@media only screen and (min-width:481px) {
+	.shadow{
+		background: none;
+	}
+}
+
+
+
+

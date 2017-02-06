@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.lanxi.weixin.mapper.WeixinUserMapper">
+ 	
+ 	<select id="getWeixinUserByOpenid" resultType="com.lanxi.weixin.bean.oauth.OpenidDetailBean" parameterType="java.lang.String">
+ 		select openid,nickname,sex,province,city,country,headimgurl,privilege,unionid,points from weixin_user where openid=#{openid}
+ 	</select>
+ 	
+ 	<insert id="insertWeixinUser" parameterType="com.lanxi.weixin.bean.oauth.OpenidDetailBean">
+ 		insert into weixin_user(openid,nickname,sex,province,city,country,headimgurl,privilege,unionid)
+ 		 values(#{openid},#{nickname},#{sex},#{province},#{city},#{country},#{headimgurl},#{privilege},#{unionid})
+ 	</insert>
+ 	
+ 	<update id="updateWeixinUser" parameterType="com.lanxi.weixin.bean.oauth.OpenidDetailBean">
+ 		update weixin_user set nickname=#{nickname},sex=#{sex},province=#{province},city=#{city},
+ 		 country=#{country},headimgurl=#{headimgurl},privilege=#{privilege},unionid=#{unionid} where openid=#{openid}
+ 	</update>
+ 	
+ 	<update id="updatePointsByOpenid" parameterType="com.lanxi.weixin.bean.oauth.OpenidDetailBean">
+ 		update weixin_user set points=#{points} where openid=#{openid}
+ 	</update>
+ 	
+ 	<update id="updatePointsByOpenid2" parameterType="com.lanxi.weixin.bean.oauth.OpenidDetailBean">
+ 		update weixin_user set points=points+#{points} where openid=#{openid}
+ 	</update>
+ </mapper>

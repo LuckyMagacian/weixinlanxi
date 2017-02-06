@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.lanxi.weixin.mapper.ErWeiCodeMapper">
+ 	<select id="getErWeiCodeByOpenid" parameterType="java.lang.String" resultType="com.lanxi.weixin.bean.ErWeiCodeBean">
+ 		select * from weixin_user_ticket where openid=#{openid}
+ 	</select>
+ 	
+ 	<update id="updateErWeiCode" parameterType="com.lanxi.weixin.bean.ErWeiCodeBean">
+ 		update weixin_user_ticket set ticket=#{ticket},expire_seconds=#{expire_seconds},url=#{url},createTime=#{createTime},action_name=#{action_name} where openid=#{openid}
+ 	</update>
+ 	
+ 	<insert id="insertErWeiCode" parameterType="com.lanxi.weixin.bean.ErWeiCodeBean">
+ 		insert into weixin_user_ticket(openid,ticket,expire_seconds,url,createTime,action_name) values(#{openid},#{ticket},#{expire_seconds},#{url},#{createTime},#{action_name})
+ 	</insert>
+ 	
+ 	<select id="getErWeiCodeByTicket" parameterType="java.lang.String" resultType="com.lanxi.weixin.bean.ErWeiCodeBean">
+ 		select * from weixin_user_ticket where ticket=#{ticket}
+ 	</select>
+ </mapper>

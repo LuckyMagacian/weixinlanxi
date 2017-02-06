@@ -1,0 +1,170 @@
+/*
+ build time: Sep 9th,2013 09:25
+ author: jiejie.zhuo
+ */
+@charset "utf-8";
+
+* {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
+	color: #333;
+	font-family: "Microsoft YaHei", sans-serif, 'Microsoft Sans Serif',
+		'Microsoft JhengHei UI';
+	background-color: #555;
+}
+
+body>div:last-child {
+	display: none;
+}
+
+#main {
+	display: table;
+	width: 480px;
+	margin: 0 auto;
+	position: relative;
+}
+
+#main canvas {
+	z-index: 1000;
+	position: absolute;
+	top: 0;
+}
+
+#main canvas.playing {
+	cursor: none;
+}
+
+#modal {
+	width: 400px;
+	height: 300px;
+	top: 100px;
+	border: #666 solid 2px;
+	border-radius: 8px;
+	position: absolute;
+	font-size: 20px;
+	background-color: #dddddd;
+	z-index: 1002;
+	min-width: 310px;
+	left: 0;
+    right: 0;
+    margin: auto;
+}
+
+@media screen and (max-width: 480px) {
+	#main,#container {
+		width: 100%;
+	}
+	#modal {
+		width: 94%;
+		top: 10px;
+	}
+	#sureModel {
+		width: 60%;
+		top: 80px;
+	}
+}
+
+.hide {
+	display: none;
+}
+
+#modal .header {
+	height: 45px;
+	line-height: 45px;
+	font-weight: bold;
+	text-align: center;
+	border-bottom: #666 solid 2px;
+}
+
+#modal .content {
+	font-weight: bold;
+	text-align: center;
+}
+
+#content {
+	height: 180px;
+	line-height: 180px;
+}
+
+#modal .footer {
+	height: 45px;
+	line-height: 35px;
+	text-align: center;
+	border-top: #666 solid 2px;
+}
+
+/* user add */
+.center {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.modelBtn {
+	width: 120px;
+	height: 30px;
+	border: #666 solid 2px;
+	border-radius: 15px;
+	font-size: 15px;
+	font-weight: bold;
+	color: #333;
+	cursor: pointer;
+	display: inline-block;
+	margin-right: 6px;
+	margin-left: 6px;
+	vertical-align: middle;
+}
+
+#sureModel {
+	height: auto;
+	border: #666 solid 2px;
+	border-radius: 8px;
+	position: absolute;
+	font-size: 20px;
+	background-color: #dddddd;
+	z-index: 1003;
+	left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    min-width: 260px;
+}
+.modelFooter {
+	height: 40px;
+	line-height: 33px;
+	border-top: #666 solid 2px;
+	text-align: center;
+}
+.modelFooter>button{
+	width:90px;
+}
+#upText{
+	height:60px;
+	line-height: 60px;
+	vertical-align: middle;
+}
+.modelHeader {
+	height: 35px;
+	line-height: 31px;
+	text-align: center;
+	border-bottom: #666 solid 2px;
+}
+@media screen and (max-width: 480px) {
+	#sureModel {
+		width: 62%;
+		top: 80px;
+	}
+}
+
+@media screen and (min-width: 481px) {
+	#sureModel {
+		width: 280px;
+		top: 185px;
+	}
+}

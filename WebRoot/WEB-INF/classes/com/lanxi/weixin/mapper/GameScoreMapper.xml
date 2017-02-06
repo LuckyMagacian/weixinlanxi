@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.lanxi.weixin.mapper.GameScoreMapper">
+ 	
+ 	<insert id="insertGameScore" parameterType="com.lanxi.weixin.bean.GameScoreBean">
+ 		insert into weixin_game_score(openid,nickname,gameType,gameScore,createTime)
+ 		 values(#{openid},#{nickname},#{gameType},#{gameScore},#{createTime})
+ 	</insert>
+ 	
+ 	<select id="getRankingList" parameterType="com.lanxi.weixin.bean.DateTimeBean" resultType="com.lanxi.weixin.bean.GameScoreBean">
+ 		<![CDATA[
+ 		select tab.*,u.headimgurl from (
+			SELECT * from weixin_game_score 
+				where gameType='AirPlaneGame' and SUBSTR(createTime,1,8)>=#{startTime} and SUBSTR(createTime,1,8)<=#{endTime} order by gameScore desc
+			) tab LEFT JOIN weixin_user u
+		 on tab.openid=u.openid
+		 GROUP BY tab.openid ORDER BY tab.gameScore desc limit 0,8
+		 ]]>
+ 	</select>
+ 	
+ 	<select id="getMaxScore" parameterType="java.lang.String" resultType="java.lang.String">
+ 		select max(gameScore) from weixin_game_score where openid=#{openid}
+ 	</select>
+ </mapper>

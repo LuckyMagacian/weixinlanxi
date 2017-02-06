@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.lanxi.weixin.mapper.UserPrizeMapper">
+ 	
+ 	<insert id="insertUserPrize" parameterType="com.lanxi.weixin.bean.UserPrizeBean">
+ 		insert into weixin_user_prize(openid,gameType,spbh,prizeGrade,spsl,prizeStatus,points,pointsStatus,createDate,createTime,deadline)
+ 		 values(#{openid},#{gameType},#{spbh},#{prizeGrade},#{spsl},#{prizeStatus},#{points},#{pointsStatus},#{createDate},#{createTime},#{deadline})
+ 	</insert>
+ 	
+ 	<select id="getUserPrizeByOpenidAndDate" parameterType="com.lanxi.weixin.bean.oauth.OpenidDetailBean" resultType="com.lanxi.weixin.bean.UserPrizeBean">
+ 		select * from weixin_user_prize where openid=#{openid} and createDate>#{dateTime} and gameType='AirPlaneGame'
+ 	</select>
+ 	
+ 	<update id="updateUserPrizeStatusByOpenid" parameterType="com.lanxi.weixin.bean.UserPrizeBean">
+ 		update weixin_user_prize set prizeStatus=#{prizeStatus},pointsStatus=#{pointsStatus},orderId=#{orderId},phone=#{phone} where openid=#{openid}
+ 	</update>
+ 	
+ 	<update id="updateUserPrizeStatusByOpenid2" parameterType="com.lanxi.weixin.bean.UserPrizeBean">
+ 		update weixin_user_prize set prizeStatus=#{prizeStatus},pointsStatus=#{pointsStatus},orderId=#{orderId},phone=#{phone} 
+ 			where openid=#{openid} and createDate=#{createDate} and createTime=#{createTime}
+ 	</update>
+ 	
+ 	<select id="getUserPrizeToday" parameterType="com.lanxi.weixin.bean.UserPrizeBean" resultType="com.lanxi.weixin.bean.UserPrizeBean">
+ 		select * from weixin_user_prize 
+			where openid=#{openid} and prizeStatus='1' and createDate=date_format(current_date(),'%Y%m%d') and gameType=#{gameType}
+			ORDER BY createTime desc limit 0,1
+ 	</select>
+ 	
+ 	<update id="setUserPrizeTimeout" parameterType="java.lang.String">
+ 		<![CDATA[
+ 		update weixin_user_prize set prizeStatus='3' , pointsStatus='3' where deadline<#{date} and prizeStatus='1'
+ 		]]>
+ 	</update>
+ 	
+ 	<select id="getUserPrizeListByOpenid" parameterType="java.lang.String" resultType="com.lanxi.weixin.bean.UserPrizeBean">
+ 		SELECT * from weixin_user_prize where openid=#{openid} order by prizeStatus
+ 	</select>
+ 	
+ 	<select id="getUserPrizeListByOpenid2" parameterType="com.lanxi.weixin.bean.PageBean" resultType="com.lanxi.weixin.bean.UserPrizeBean">
+ 		SELECT * from weixin_user_prize where openid=#{openid} order by prizeStatus limit #{start},#{numPerPage}
+ 	</select>
+ 	
+ 	<select id="getUserPrizeByPrizeGrade" parameterType="com.lanxi.weixin.bean.UserPrizeBean" resultType="com.lanxi.weixin.bean.UserPrizeBean">
+ 		select * from weixin_user_prize 
+			where openid=#{openid} and prizeStatus='1' and gameType=#{gameType} and createDate=#{createDate} and createTime=#{createTime}
+			ORDER BY createTime desc limit 0,1
+ 	</select>
+ </mapper>

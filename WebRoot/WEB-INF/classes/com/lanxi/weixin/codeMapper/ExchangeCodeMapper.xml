@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lanxi.weixin.codeMapper.ExchangeCodeMapper">
+
+    <select id="getByCmid" parameterType="java.lang.String" resultType="com.lanxi.weixin.bean.ExchangeCodeBean">
+        SELECT * from t_exchange_code
+        WHERE cmid=#{cmid}
+    </select>
+
+    <update id="updateCmztByCmidCmzt" parameterType="com.lanxi.weixin.bean.ExchangeCodeBean">
+        UPDATE t_exchange_code SET cmzt=#{newCmzt}, dhsjhm=#{dhsjhm}, dhsj=#{dhsj}
+        WHERE cmid=#{cmid} AND cmzt=#{cmzt}
+    </update>
+
+    <select id="getExchangeCountByDhsjDhsjhm" resultType="java.lang.Integer">
+        SELECT count(*) from t_exchange_code
+        WHERE cmzt='1' AND dhsjhm=#{dhsjhm} AND <![CDATA[dhsj>=#{beginDate}]]> AND <![CDATA[dhsj<=#{endDate}]]>
+    </select>
+
+    <insert id="insertSMSSend">
+        INSERT INTO JFDH_SMS_SEND (xtrq, fsxh, clbz, sjh, zdcs, yfcs, fsrq, fssj, fsxx)
+        VALUES (#{xtrq}, #{fsxh}, #{clbz}, #{sjh}, #{zdcs}, #{yfcs}, #{fsrq}, #{fssj}, #{fsxx})
+    </insert>
+
+</mapper>

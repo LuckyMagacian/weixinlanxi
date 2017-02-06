@@ -1,0 +1,286 @@
+@charset "utf-8";
+
+html,body {
+	width: 100%;
+	height: auto;
+	margin: auto 0;
+	font-family: "微软雅黑", "Microsoft YaHei", sans-serif,
+		'Microsoft Sans Serif', 'Microsoft JhengHei UI';
+}
+
+body {
+	background: url(../img/airplaneGame/bg.jpg) no-repeat #DDDDDD;
+	background-position: center;
+}
+a{
+	text-decoration: none;
+}
+.hide {
+	display: none;
+}
+
+.center {
+	text-align: center;
+	margin: 0 auto;
+	vertical-align: middle;
+	margin-bottom: 12px;
+}
+#prizeYesContent>p{
+	margin:10px 0px 0px 0px;
+}
+.inputSuccess {
+	border:1px solid #3c763d !important;
+}
+
+.inputError {
+	border:1px solid #a94442 !important;
+}
+#fullBlack {
+	z-index: 1001;
+	background-color: black;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	filter: alpha(opacity =   50);
+	-moz-opacity: 0.5;
+	-khtml-opacity: 0.5;
+	-webkit-opacity: 0.5;
+	opacity: 0.5;
+}
+/* body */
+#logo {
+	background: url(../img/airplaneGame/logo.png) no-repeat;
+	height: 90px;
+	background-position: center;
+	margin-top: 80px;
+}
+
+#welcome {
+	text-align: center;
+	color: #555;
+	height: 80px;
+	font-family: "微软雅黑";
+	margin-top: 20px;
+}
+
+#start {
+	background: url(../img/airplaneGame/gameStart.png) no-repeat;
+}
+
+#rankList {
+	background: url(../img/airplaneGame/rankList.png) no-repeat;
+}
+
+#activeInfo {
+	background: url(../img/airplaneGame/activeInfo.png) no-repeat;
+}
+
+#prizeInfo {
+	background: url(../img/airplaneGame/prize.png) no-repeat;
+}
+
+#start,#rankList,#activeInfo,#prizeInfo {
+	display: block;
+	background-position: center;
+	height: 50px;
+}
+
+#start>a,#rankList>a,#activeInfo>a,#prizeInfo>a {
+	display: block;
+	margin: auto;
+}
+
+.copyright {
+	text-align: center;
+	font-family: "微软雅黑";
+}
+
+.copyright>p {
+	text-align: center;
+	color: #7F8082;
+	font-size: 0.875em;
+}
+
+.copyright>p>a {
+	color: #7F8082;
+	text-decoration: none;
+}
+
+.copyright strong {
+	color: #4d74b5;
+	font-size: 1.125em;
+}
+
+footer {
+	position: fixed;
+	bottom: 10px;
+	left: 0;
+	right: 0;
+}
+
+/* 弹出框 */
+#listModel,#infoModel,#prizeModel {
+	width: 400px;
+	height: auto;
+	top: 50px;
+	border: #666 solid 2px;
+	border-radius: 8px;
+	position: absolute;
+	font-size: 20px;
+	background-color: #dddddd;
+	z-index: 1002;
+	left: 0;
+	right: 0;
+	margin: auto;
+	min-width: 320px;
+}
+#prizeModel p>input {
+	height: 24px;
+	vertical-align: middle;
+	padding: 1px 3px;
+	font-size: .85em;
+	width: 180px;
+	background-color: #ddd;
+	border: 1px solid #888;
+}
+
+.modelHeader {
+	height: 45px;
+	line-height: 45px;
+	font-weight: bold;
+	text-align: center;
+	border-bottom: #666 solid 2px;
+}
+
+.modelContent>p {
+	margin: 6px 2px 6px 8px;
+	font-size: 0.8em;
+}
+
+.modelFooter {
+	height: 42px;
+	line-height: 37px;
+	border-top: #666 solid 2px;
+	text-align: center;
+}
+
+.modelBtn {
+	width: 120px;
+	height: 30px;
+	border: #666 solid 2px;
+	border-radius: 15px;
+	font-size: 15px;
+	font-weight: bold;
+	color: #333;
+	cursor: pointer;
+}
+
+.modelLi {
+	height: 49px;
+	border-bottom: #666 solid 1px;
+	min-width: 320px;
+}
+
+.modelLi>div {
+	display: inline-block;
+	height: 50px;
+	line-height: 50px;
+	vertical-align: middle;
+}
+
+.modelLi>div>img {
+	width: 40px;
+	height: auto;
+	margin-top: 4px;
+	border: 1px solid #999;
+}
+
+.listRank {
+	min-width: 40px;
+	height: 50px;
+	text-align: center;
+	padding-left: 4px;
+}
+
+.listImg {
+	min-width: 45px;
+	height: 50px;
+}
+
+.listScore {
+	height: 50px;
+	font-size: .9em;
+}
+
+.name {
+	font-size: 0.9em;
+	max-width: 115px;
+	overflow: hidden;
+	height: 50px;
+	display: inline-block;
+}
+
+.score {
+	font-size: .85em;
+	float: right;
+	display: inline-block;
+	height: 50px;
+	line-height: 50px;
+	padding-right: 4px;
+}
+#prizeModelHint{
+	font-size: 0.75em;
+	color: #e50a0a;
+}
+#prizeBack{
+	padding: 0px 8px 0px 8px;
+}
+/*响应式布局*/
+@media only screen and (max-width: 480px) {
+	#logo {
+		background-size: 80%;
+	}
+	#start,#rankList,#activeInfo,#prizeInfo {
+		background-size: 60%;
+	}
+	#start>a,#rankList>a,#activeInfo>a,#prizeInfo>a {
+		height: 65%;
+		width: 60%;
+		margin-top: 2%;
+	}
+	/* 弹出框 */
+	#listModel {
+		width: 94%;
+		top: 15px;
+	}
+	#infoModel {
+		width: 94%;
+		top: 25px;
+	}
+	#prizeModel {
+		width: 94%;
+		top: 175px;
+	}
+}
+
+@media only screen and (min-width: 481px) {
+	#start,#rankList,#activeInfo,#prizeInfo {
+		margin-bottom: 10px;
+	}
+	#start>a,#rankList>a,#activeInfo>a,#prizeInfo>a {
+		height: 41px;
+		width: 300px;
+		margin-top: 5px;
+	}
+	.name {
+		max-width: 160px;
+	}
+}
+
+@media only screen and (min-width: 400px) and (max-width:480px) {
+	.name {
+		max-width: 160px;
+	}
+}
