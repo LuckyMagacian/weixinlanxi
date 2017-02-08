@@ -11,19 +11,19 @@
 	content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <link rel="stylesheet" type="text/css" href="../css/codeCheckIndex.css" />
 
-<title>验证成功——话费充值平台</title>
+<title>兑换成功——礼品兑换平台</title>
 </head>
 
 <body>
 	<header>
 		<div style="height: 1px;"></div>
 		<div id="headerBg"></div>
-<div id="headerTitle"><span style="font-size: 0.8em">欢迎使用</span><br/><span>话费充值平台</span></div>
+<div id="headerTitle"><span style="font-size: 0.8em">欢迎使用</span><br/><span>礼品兑换平台</span></div>
 	</header>
 	<div class="content">
-		<h2 class="successColor center">话费充值成功！</h2>
+		<h2 class="successColor center">兑换成功！</h2>
 		<!-- <p class="successColor">恭喜您，串码验证成功，验证商品为||，系统将会在24小时内充值至尾号为||的手机中。如有疑问，请联系xxxxxxxx。</p> -->
-		<p class="successColor">系统将会在48小时之内将${spmc}充值至${phone}中，请注意话费余额变动。如有疑问，请致电客服<a href="tel:4000552797">400-055-2797</a>。</p>
+		<p class="successColor">系统将会在两个工作日内将${spmc}发送/充值至${phone}中，请注意查收。如有疑问，请致电客服<a href="tel:4000552797">400-055-2797</a>。</p>
 		<p style="text-indent: 0em;text-align: center;">
 			<a href="../exchangeCode/exchangeCode.do">点击这里</a>返回至首页
 		</p>

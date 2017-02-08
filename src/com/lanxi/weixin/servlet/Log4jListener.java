@@ -12,7 +12,7 @@ public class Log4jListener implements ServletContextListener {
 	public void contextDestroyed(ServletContextEvent arg0) {
 
 	}
-	// TODO 没看懂
+
 	public void contextInitialized(ServletContextEvent event) {
 		String webAppRootKey = event.getServletContext().getInitParameter(
 				"webAppRootKey");

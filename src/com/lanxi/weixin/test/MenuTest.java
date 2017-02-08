@@ -24,7 +24,8 @@ public class MenuTest {
 		//BaseReturnMsgBean bean = JSON.parseObject(result, BaseReturnMsgBean.class);
 		//System.out.println(bean.getErrcode()+","+bean.getErrmsg());
 		ParamManager.readConfig();
-		createMenu();
+		getMenu();
+//		createMenu();
 		//String jsonText = getMenuJson();
 		//System.out.println(jsonText);
 	}
@@ -48,6 +49,12 @@ public class MenuTest {
 		}
 	}
 	
+	public static void getMenu(){
+		String accessToken = AccessTokenUtil.getAccessToken();
+		String url="https://api.weixin.qq.com/cgi-bin/get_current_selfmenu_info?access_token=ACCESS_TOKEN";
+		url.replace("ACCESS_TOKEN", accessToken);
+		System.out.println(HttpUtils.sendGet(url, "utf-8",6000+""));
+	}	
 	
 	/**
 	 * 得到创建自定义菜单的json
@@ -92,10 +99,14 @@ public class MenuTest {
 //		middleThird.setType("view");
 //		middleThird.setName("网页授权测试");
 //		middleThird.setUrl(url);
+		ViewBean middleThird = new ViewBean();
+		middleThird.setType("view");
+		middleThird.setName("话费兑换");
+		middleThird.setUrl("http://www.188lanxi.com/weixinlanxi/exchangeCode/exchangeCode.do");
 		
 		ViewBean middleSecond = new ViewBean();
 		middleSecond.setType("view");
-		middleSecond.setName("串码验证");
+		middleSecond.setName("流量兑换");
 		middleSecond.setUrl("http://www.188lanxi.com/weixinlanxi/codeCheck/toCodeCheck.do");
 		
 		ClickBean middleFirst = new ClickBean();
@@ -130,7 +141,7 @@ public class MenuTest {
 		leftList.add(leftFirst);
 		
 		List<Object> middleList = new ArrayList<Object>();
-		//middleList.add(middleThird);
+		middleList.add(middleThird);
 		middleList.add(middleSecond);
 		middleList.add(middleFirst);
 		

@@ -11,7 +11,6 @@ public class StringUtil {
 	 * @param request
 	 * @return
 	 */
-	// TODO 会不会被覆盖?????????
 	public static String getIpAddr(HttpServletRequest request) {
 		String ip = request.getHeader("x-forwarded-for");      
         if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {      

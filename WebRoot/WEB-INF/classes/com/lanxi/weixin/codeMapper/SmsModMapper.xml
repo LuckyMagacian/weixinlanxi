@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lanxi.weixin.codeMapper.SmsModMapper">
+
+    <select id="getSmsmodBySmsname" resultType="java.lang.String">
+        SELECT smsmod FROM t_sms_mod
+        WHERE smsname = #{smsname}
+    </select>
+
+</mapper>

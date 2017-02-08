@@ -88,7 +88,6 @@ public class HappyScratchController {
 			if(count>0){
 				if(points>=0){
 					opBean.setPoints(points-10);
-					// TODO 分数可以为负数?
 					session.setAttribute("opBean", opBean);
 					weixinUserService.updatePointsByOpenid(opBean);
 				}else{
@@ -113,7 +112,6 @@ public class HappyScratchController {
 			if(result<=a1){	//奖品1
 				retCode = 8;
 				prizeGrade = 1;
-				// TODO 可以简化为直接小于(a1+a2)甚至直接小于a2
 			}else if(result>a1 && result<=(a1+a2)){	//奖品2
 				retCode = 7;
 				prizeGrade = 2;
@@ -184,7 +182,7 @@ public class HappyScratchController {
 		}
 		return null;
 	}
-	// TODO 为什么不把领奖独立封装..这样不用每种游戏都写,只要留下参数就好O.O
+	
 	@RequestMapping("/getPrize.do")
 	public String getPrize(HttpServletResponse response,HttpSession session,String phone) throws IOException{
 		log.info("刮刮乐领奖...");

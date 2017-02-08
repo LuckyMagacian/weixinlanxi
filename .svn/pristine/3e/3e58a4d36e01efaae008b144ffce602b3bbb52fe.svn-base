@@ -92,10 +92,14 @@ public class MenuTest {
 //		middleThird.setType("view");
 //		middleThird.setName("网页授权测试");
 //		middleThird.setUrl(url);
+		ViewBean middleThird = new ViewBean();
+		middleThird.setType("view");
+		middleThird.setName("话费兑换");
+		middleThird.setUrl("http://www.188lanxi.com/weixinlanxi/exchangeCode/exchangeCode.do");
 		
 		ViewBean middleSecond = new ViewBean();
 		middleSecond.setType("view");
-		middleSecond.setName("串码验证");
+		middleSecond.setName("流量兑换");
 		middleSecond.setUrl("http://www.188lanxi.com/weixinlanxi/codeCheck/toCodeCheck.do");
 		
 		ClickBean middleFirst = new ClickBean();
@@ -130,7 +134,7 @@ public class MenuTest {
 		leftList.add(leftFirst);
 		
 		List<Object> middleList = new ArrayList<Object>();
-		//middleList.add(middleThird);
+		middleList.add(middleThird);
 		middleList.add(middleSecond);
 		middleList.add(middleFirst);
 		

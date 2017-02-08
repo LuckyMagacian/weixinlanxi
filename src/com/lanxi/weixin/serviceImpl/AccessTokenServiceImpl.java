@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lanxi.weixin.bean.menu.AccessTokenBean;
+import com.lanxi.weixin.manager.AccessTokenManager2;
 import com.lanxi.weixin.mapper.AccessTokenMapper;
 import com.lanxi.weixin.service.AccessTokenService;
 
@@ -22,7 +23,7 @@ public class AccessTokenServiceImpl implements AccessTokenService {
 	@Override
 	public AccessTokenBean getAccessToken() {
 		
-		return accessTokenMapper.getAccessToken();
+		return AccessTokenManager2.getAccessToken();
 	}
 
 }

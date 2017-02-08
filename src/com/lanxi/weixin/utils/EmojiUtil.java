@@ -8,7 +8,7 @@ import java.io.UnsupportedEncodingException;
  
 public class EmojiUtil{
  
-	// TODO 测试下  
+ 
     public static String emojiFilter(String str){
         String patternString = "([\\x{10000}-\\x{10ffff}\ud800-\udfff])";
  

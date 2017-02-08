@@ -26,6 +26,10 @@ public class ExchangeCodeBean {
     private String beiy1;
     /** 备用2 */
     private String beiy2;
+    /** 机构号 */
+    private String branchid;
+    /** 短信名称 */
+    private String smsname;
 
     /** 设置状态 */
     private String newCmzt;
@@ -196,6 +200,32 @@ public class ExchangeCodeBean {
             this.beiy2 = beiy2.trim();
         } else {
             this.beiy2 = beiy2;
+        }
+    }
+
+    public String getBranchid() {
+        return branchid;
+    }
+
+    public void setBranchid(String branchid) {
+
+        if (branchid != null) {
+            this.branchid = branchid.trim();
+        } else {
+            this.branchid = branchid;
+        }
+    }
+
+    public String getSmsname() {
+        return smsname;
+    }
+
+    public void setSmsname(String smsname) {
+
+        if (smsname != null) {
+            this.smsname = smsname.trim();
+        } else {
+            this.smsname = smsname;
         }
     }
 }

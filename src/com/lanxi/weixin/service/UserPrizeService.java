@@ -5,7 +5,7 @@ import java.util.List;
 import com.lanxi.weixin.bean.PageBean;
 import com.lanxi.weixin.bean.UserPrizeBean;
 import com.lanxi.weixin.bean.oauth.OpenidDetailBean;
-// TODO 有点乱....
+
 public interface UserPrizeService {
 
 	/**

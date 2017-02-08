@@ -9,7 +9,7 @@ import com.lanxi.weixin.utils.HttpUtils;
 
 public class OAuthManager {
 
-	private static Logger log = Logger.getLogger(OAuthManager.class);
+	protected static Logger log = Logger.getLogger(OAuthManager.class);
 	
 	/**
 	 * 根据code获得网页access_token

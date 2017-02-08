@@ -40,14 +40,14 @@ public class SessionTimeoutInterceptor implements HandlerInterceptor {
 //		log.info(ip);
 //		String lastpage = request.getHeader("Referer");//获取上一个页面
 //		log.info(lastpage);
-		if(null != allowUrls && allowUrls.length>1){
-			for(String url : allowUrls){
-				if(requestUrl.contains(url)){
-					return true;
-				}
-			}
-		}
-		return true;// TODO 应该默认不通过才对
+//		if(null != allowUrls && allowUrls.length>1){
+//			for(String url : allowUrls){
+//				if(requestUrl.contains(url)){
+//					return true;
+//				}
+//			}
+//		}
+		return true;
 	}
 
 }

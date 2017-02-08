@@ -7,14 +7,16 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
 public class ParamManager {
 
-	private static Logger log = Logger.getLogger(ParamManager.class);
+	protected static Logger log = Logger.getLogger(ParamManager.class);
 
 	/**http超时时间*/
 	public static String timeout;
@@ -108,7 +110,14 @@ public class ParamManager {
 	/** 每日限制 */
 	public static boolean ifUseExchangeLimitForDay;
 	public static int exchangeLimitForDay;
-	
+	// 短信平台参数
+	public static String smsUrl;
+	public static String smsKey;
+	// 兑换次数限制 from db
+	public static boolean ifUseExchangeBranchActInfo;
+	// 兑换次数白名单
+	public static List<String> exWhiteList;
+
 	public static void readConfig() {
 		Properties pro = null;
 		pro = new Properties();
@@ -178,6 +187,14 @@ public class ParamManager {
 			}
 			ifUseExchangeLimitForDay = Boolean.valueOf(pro.getProperty("ifUseExchangeLimitForDay"));
 			exchangeLimitForDay = Integer.valueOf(pro.getProperty("exchangeLimitForDay"));
+
+			// 短信平台参数
+			smsUrl = pro.getProperty("smsUrl");
+			smsKey = pro.getProperty("smsKey");
+
+			// 兑换次数限制 from db
+			ifUseExchangeBranchActInfo = Boolean.valueOf(pro.getProperty("ifUseExchangeBranchActInfo"));
+			exWhiteList = Arrays.asList(pro.getProperty("exWhiteList").split(","));
 
 			log.info("读取配置文件成功！");
 			System.setProperty("sun.net.client.defaultConnectTimeout", timeout);

@@ -1,6 +1,6 @@
 package com.lanxi.weixin.bean.message;
 
-public class NewsArticleBean extends MsgBean{
+public class NewsArticleBean {
 
 	/**图文消息标题 */
 	private String title;

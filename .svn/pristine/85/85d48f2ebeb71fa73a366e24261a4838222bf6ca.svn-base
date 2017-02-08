@@ -1,13 +1,17 @@
 package com.lanxi.weixin.serviceImpl;
 
+import com.lanxi.weixin.bean.BranchActInfoBean;
 import com.lanxi.weixin.bean.ExchangeCodeBean;
 import com.lanxi.weixin.bean.OrderBean;
+import com.lanxi.weixin.codeMapper.BranchActInfoMapper;
 import com.lanxi.weixin.codeMapper.ExchangeCodeMapper;
+import com.lanxi.weixin.codeMapper.SmsModMapper;
 import com.lanxi.weixin.manager.ParamManager;
 import com.lanxi.weixin.manager.SendOrderManager;
 import com.lanxi.weixin.service.ExchangeCodeService;
 import com.lanxi.weixin.utils.DateTimeUtil;
 import com.lanxi.weixin.utils.ParamInterface;
+import com.lanxi.weixin.utils.SmsSendUtils;
 import org.apache.commons.httpclient.ConnectTimeoutException;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.log4j.Logger;
@@ -28,6 +32,10 @@ public class ExchangeCodeServiceImpl implements ExchangeCodeService{
 
     @Autowired
     ExchangeCodeMapper exchangeCodeMapper;
+    @Autowired
+    BranchActInfoMapper branchActInfoMapper;
+    @Autowired
+    SmsModMapper smsModMapper;
 
 
     /**
@@ -56,7 +64,8 @@ public class ExchangeCodeServiceImpl implements ExchangeCodeService{
             return retMap;
         }
 
-        if (ParamManager.ifUseExchangeLimit) {
+        // 配置文件 limit 不区分机构
+        if (ParamManager.ifUseExchangeLimit && !ParamManager.exWhiteList.contains(dhsjhm)) {
             int count = exchangeCodeMapper.getExchangeCountByDhsjDhsjhm(dhsjhm,
                                                             ParamManager.limitBeginDate, ParamManager.limitEndDate);
             if (count >= ParamManager.exchangeLimit) {
@@ -66,9 +75,46 @@ public class ExchangeCodeServiceImpl implements ExchangeCodeService{
                 return retMap;
             }
         }
+        // t_branch_act_info 表中数据
+        String dhsj = DateTimeUtil.getCurrentyyyyMMddHHmmss();
+//        if (ParamManager.ifUseExchangeBranchActInfo && !ParamManager.exWhiteList.contains(dhsjhm)) {
+//            BranchActInfoBean branchActInfo = branchActInfoMapper.getBranchActInfoByBranchid(exchangeCode.getBranchid());
+//            if (null == branchActInfo) {
+//                log.info("机构活动信息null, 不限制, Branchid: " + exchangeCode.getBranchid());
+//            } else {
+//                if (null != branchActInfo.getActend() && !branchActInfo.getActend().equals("")) {
+//                    branchActInfo.setActend(branchActInfo.getActend() + "235959");
+//                }
+//                // 兑换活动日期 ?
+//                if (null != branchActInfo.getActbegin() && !branchActInfo.getActbegin().equals("") &&
+//                        dhsj.compareTo(branchActInfo.getActbegin()) < 0) {
+//                    log.info("ExchangeCodeServiceImpl->exchangeByCmidDhsjhm, 串码兑换, 兑换活动未开始, 兑换时间: " + dhsj +
+//                            ", 活动开始日期: " + branchActInfo.getActbegin() + ", branchid: " + exchangeCode.getBranchid());
+//                    retMap.put("msg", "兑换活动未开始");
+//                    return retMap;
+//                }
+//                if (null != branchActInfo.getActend() && !branchActInfo.getActend().equals("") &&
+//                        dhsj.compareTo(branchActInfo.getActend() + "235959") > 0) {
+//                    log.info("ExchangeCodeServiceImpl->exchangeByCmidDhsjhm, 串码兑换, 兑换活动已过期, 兑换时间: " + dhsj +
+//                            ", 活动结束日期: " + branchActInfo.getActend() + ", branchid: " + exchangeCode.getBranchid());
+//                    retMap.put("msg", "兑换活动已过期");
+//                    return retMap;
+//                }
+//                // 兑换上限
+//                int count = exchangeCodeMapper.getExchangeCountByDhsjBranchidDhsjhm(exchangeCode.getBranchid(), dhsjhm,
+//                        branchActInfo.getActbegin(), branchActInfo.getActend());
+//                if ( null != branchActInfo.getLimit() && !branchActInfo.getLimit().equals("") &&
+//                        count >= Integer.valueOf(branchActInfo.getLimit()) ) {
+//                    log.info("ExchangeCodeServiceImpl->exchangeByCmidDhsjhm, 串码兑换, 手机号已达充值上限, 手机号: " + dhsjhm +
+//                            ", 已兑换次数: " + count + ", 兑换上限限制: " + branchActInfo.getLimit());
+//                    retMap.put("msg", "手机号已达兑换码充值上限");
+//                    return retMap;
+//                }
+//            }
+//        }
 
         exchangeCode.setNewCmzt(ParamInterface.CODE_STATUS_INVALID);
-        exchangeCode.setDhsj(DateTimeUtil.getCurrentyyyyMMddHHmmss());
+        exchangeCode.setDhsj(dhsj);
         exchangeCode.setDhsjhm(dhsjhm);
         int status = exchangeCodeMapper.updateCmztByCmidCmzt(exchangeCode);
         if (status < 1) {
@@ -85,7 +131,8 @@ public class ExchangeCodeServiceImpl implements ExchangeCodeService{
             orderBean.setSpsl(exchangeCode.getSpsl());
             orderBean.setPhone(exchangeCode.getDhsjhm());
 
-            retOrderBean = SendOrderManager.sendOrderToXjfSrcNH(orderBean, exchangeCode.getSpbh().substring(0, 2));
+            retOrderBean = SendOrderManager.sendOrderToXjfByBranchid(orderBean, exchangeCode.getBranchid(),
+                                                                        exchangeCode.getSpbh().substring(0, 2));
 
             if (!retOrderBean.getRetCode().equals("0000")) {
                 log.error("ExchangeCodeServiceImpl->exchangeByCmidDhsjhm, 发送兑换请求失败, retCode: " +
@@ -93,21 +140,24 @@ public class ExchangeCodeServiceImpl implements ExchangeCodeService{
                 throw new RuntimeException("发送兑换请求失败, retCode: " + retOrderBean.getRetCode());
             }
 
-            // 发送短信 插入短信发送表(JFDH_SMS_SEND)
+            // 发送短信
             try {
-                String fsxx = "尊敬的客户，您参加农行“掌银分期送话费”活动，获赠的10元话费已充值成功。本充值服务由蓝喜信息提供，关注公众号“蓝喜微管家”获取更多精彩活动。【杭州蓝喜】";
-                exchangeCodeMapper.insertSMSSend(DateTimeUtil.getCurrentyyyyMMdd(), // 系统日期
-                        RandomStringUtils.randomNumeric(8), // 发送序号
-                        "0", // 处理标志 0:未处理或失败 1:处理成功
-                        orderBean.getPhone(), // 手机号
-                        3, // 最大次数
-                        0, // 已发次数
-                        DateTimeUtil.getCurrentyyyyMMdd(), // 发送日期
-                        DateTimeUtil.getCurrentHHmmss(), // 发送时间
-                        fsxx); // 发送信息
+                String smsMod = smsModMapper.getSmsmodBySmsname(exchangeCode.getSmsname());
+                if (null == smsMod || smsMod.equals("")) {
+                    log.error("ERROR, 兑换码兑换, 获取短信发送模板失败, Smsname: " + exchangeCode.getSmsname() +
+                            ", 手机号: " + orderBean.getPhone() + ", 串码id: " + cmid +
+                            ", Branchid: " + exchangeCode.getBranchid());
+                } else {
+                    if (!SmsSendUtils.sendSms(dhsjhm, smsMod)) {
+                        log.error("ERROR, 兑换码兑换, 短信发送失败, Smsname: " + exchangeCode.getSmsname() +
+                                ", 手机号: " + orderBean.getPhone() + ", 串码id: " + cmid +
+                                ", Branchid: " + exchangeCode.getBranchid());
+                    }
+                }
             } catch (Exception e) {
-                log.error("ERROR, 插入短信发送表失败" +", 系统日期: " + DateTimeUtil.getCurrentyyyyMMdd() +
+                log.error("ERROR, 兑换码兑换, 短信发送失败" +", 系统日期: " + dhsj +
                         ", 手机号: " + orderBean.getPhone() + ", 串码id: " + cmid +
+                        ", Branchid: " + exchangeCode.getBranchid() +
                         " : " + e.getClass().getName()+":"+e.getMessage(),e);
             }
 

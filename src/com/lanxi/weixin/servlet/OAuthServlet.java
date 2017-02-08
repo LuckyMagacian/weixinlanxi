@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 import com.lanxi.weixin.bean.oauth.OpenidDetailBean;
 import com.lanxi.weixin.bean.oauth.WebAccessTokeanBean;
 import com.lanxi.weixin.manager.OAuthManager;
+import com.lanxi.weixin.manager.OAuthManager2;
 
 public class OAuthServlet extends HttpServlet {
 
@@ -37,7 +38,7 @@ public class OAuthServlet extends HttpServlet {
 		OpenidDetailBean odBean = null;
 		log.info("获取到的code:"+code);
 		if(null!=code && !"".equals(code)){
-			wtBean = OAuthManager.getWebAccessTokean(code);
+			wtBean = OAuthManager2.getWebAccessTokean(code);
 			String access_token = wtBean.getAccess_token();
 			String openid = wtBean.getOpenid();
 			log.info("access_token:"+access_token+",openid:"+openid);

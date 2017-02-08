@@ -7,14 +7,14 @@
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<link rel="stylesheet" type="text/css" href="../css/codeCheckIndex.css" />
 
-		<title>话费充值平台</title>
+		<title>礼品兑换平台</title>
 	</head>
 
 	<body>
 		<header>
 			<div style="height: 1px;"></div>
 			<div id="headerBg"></div>
-			<div id="headerTitle"><span style="font-size: 0.8em">欢迎使用</span><br/><span>话费充值平台</span></div>
+			<div id="headerTitle"><span style="font-size: 0.8em">欢迎使用</span><br/><span>礼品兑换平台</span></div>
 		</header>
 		<div class="content">
 			<form action="../exchangeCode/exchange.do" method="post" id="form" onsubmit="return control('formBtn');">
@@ -32,10 +32,11 @@
 				</div>
 				<div id="attention">
 					<p>尊敬的用户您好：</p>
-					<p>1.手机如果在停机或销户状态,将无法正常充值。</p>
+					<p>1.手机如果在停机/销户状态,将无法正常充值或发放串码。</p>
 					<p>2.虚拟号段的手机号无法正常充值,如以170,171开头的手机号。</p>
-					<p>3.同一手机号在活动期内(9月1日-11月30日)兑换码充值上限为5次。</p>
-					<p>4.若您遇到兑换码无法成功使用等异常情况，请致电客服<a href="tel:4000552797">400-055-2797</a>。</p>
+					<p>3.因手机套餐冲突、以时长计费等原因，将无法正常充值流量；</p>
+					<p>4.同一手机号在活动期的兑换上限为5次。</p>
+					<p>5.若您遇到兑换码无法正常使用等异常情况，请致电客服<a href="tel:4000552797">400-055-2797</a>。</p>
 				</div>
 			</form>
 		</div>

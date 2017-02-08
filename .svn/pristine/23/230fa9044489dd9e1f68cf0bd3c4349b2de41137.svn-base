@@ -24,4 +24,18 @@
         VALUES (#{xtrq}, #{fsxh}, #{clbz}, #{sjh}, #{zdcs}, #{yfcs}, #{fsrq}, #{fssj}, #{fsxx})
     </insert>
 
+
+    <select id="getExchangeCountByDhsjBranchidDhsjhm" resultType="java.lang.Integer">
+        SELECT count(*) from t_exchange_code
+        <where>
+            branchid=#{branchid} AND dhsjhm=#{dhsjhm} AND cmzt='1'
+            <if test="beginDate!=null and beginDate!=''">
+                and <![CDATA[dhsj>=#{beginDate}]]>
+            </if>
+            <if test="endDate!=null and endDate!=''">
+                and <![CDATA[dhsj>=#{endDate}]]>
+            </if>
+        </where>
+    </select>
+
 </mapper>

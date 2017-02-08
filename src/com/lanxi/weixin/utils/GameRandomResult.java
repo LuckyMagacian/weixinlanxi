@@ -46,4 +46,5 @@ public class GameRandomResult {
 		}
 		return result;
 	}
+	
 }

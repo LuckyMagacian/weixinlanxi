@@ -39,7 +39,7 @@ public class GameController {
 	}
 	
 	/**
-	 * 获取用户的奖品列表
+	 * 获取用户的奖品列
 	 * @param session
 	 * @param response
 	 * @param pageNum		第几页
@@ -51,7 +51,6 @@ public class GameController {
 	public String getUserPrizeList(HttpSession session,HttpServletResponse response,String pageNum,String numPerPage) throws IOException{
 		log.info("获取用户奖品列表...");
 		PrintWriter out = response.getWriter();
-		// TODO 应该先设置编码格式再获取输出流才对
 		response.setContentType("html/text;charset=utf-8");
 		response.setCharacterEncoding("utf-8");
 		OpenidDetailBean opBean = null;

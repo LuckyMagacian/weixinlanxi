@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lanxi.weixin.bean.oauth.OpenidDetailBean;
 import com.lanxi.weixin.bean.oauth.WebAccessTokeanBean;
-import com.lanxi.weixin.manager.OAuthManager;
+import com.lanxi.weixin.manager.OAuthManager2;
 import com.lanxi.weixin.service.WeixinUserService;
 import com.lanxi.weixin.utils.EmojiUtil;
 
@@ -18,10 +18,10 @@ import com.lanxi.weixin.utils.EmojiUtil;
 @RequestMapping("/oauth")
 public class OAuthController {
 
-	private static Logger log = Logger.getLogger(OAuthController.class);
+	protected static Logger log = Logger.getLogger(OAuthController.class);
 	
 	@Autowired
-	private WeixinUserService weixinUserService;
+	protected WeixinUserService weixinUserService;
 	
 	@RequestMapping("/authorization.do")
 	public String authorization(HttpServletRequest request,HttpServletResponse response){
@@ -36,11 +36,11 @@ public class OAuthController {
 			
 			log.info("获取到的code:"+code);
 			if(null!=code && !"".equals(code)){
-				wtBean = OAuthManager.getWebAccessTokean(code);
+				wtBean = OAuthManager2.getWebAccessTokean(code);
 				String access_token = wtBean.getAccess_token();
 				String openid = wtBean.getOpenid();
 				log.info("access_token:"+access_token+",openid:"+openid);
-				odBean = OAuthManager.getOpenidDetail(access_token, openid);
+				odBean = OAuthManager2.getOpenidDetail(access_token, openid);
 				//TODO
 				odBean.setNickname(EmojiUtil.filterEmoji(odBean.getNickname()));
 				int odBeanId = weixinUserService.updateWeixinUser(odBean);

@@ -124,10 +124,17 @@ product_url=http\://mp.weixin.qq.com/s?__biz\=MzIyODE0NTgzMA\=\=&mid\=401768506&
 
 #农行串码兑换次数限制
 #时间区间内限制
-ifUseExchangeLimit=true
+ifUseExchangeLimit=false
 exchangeLimit=5
 limitBeginDate=20160828
 limitEndDate=20161130
 #每日限制
 ifUseExchangeLimitForDay=false
 exchangeLimitForDay=1
+# 是否根据db中机构活动信息判断limit (delay)
+ifUseExchangeBranchActInfo=false
+# 短信平台参数
+smsUrl=http://192.168.17.70:8000/shortMessage/sendMessage.do
+smsKey=f2a39f362dc84d09
+# 兑换次数白名单
+exWhiteList=17710458772,13575744531,13355789888

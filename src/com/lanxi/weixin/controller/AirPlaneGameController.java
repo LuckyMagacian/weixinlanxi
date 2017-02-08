@@ -63,7 +63,6 @@ public class AirPlaneGameController {
 	@RequestMapping("/toPlaneGameIndex.do")
 	public String toPlaneGameIndex(String openid,Model model,HttpSession session) {
 		log.info("跳转到飞机大战index页面");
-		//若没有会话,则获取会话及用户信息
 		if(null == session.getAttribute("opBean")){
 			OpenidDetailBean opBean = weixinUserService.getWeixinUserByOpenid(openid);
 			session.setAttribute("opBean", opBean);
@@ -113,7 +112,6 @@ public class AirPlaneGameController {
 			gameScoreBean.setGameScore(Integer.parseInt(score));
 			gameScoreBean.setCreateTime(sdf.format(new Date()));
 			gameScoreService.insertGameScore(gameScoreBean);
-			//内容"{"retCode":"0000","retMsg":"success"}"
 			out.println("{\"retCode\":\"0000\",\"retMsg\":\"success\"}");
 			out.flush();
 			out.close();

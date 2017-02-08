@@ -31,7 +31,7 @@ public class MsgManager {
 			String fromUserName = xmlMap.get("FromUserName");
 			String msgType = xmlMap.get("MsgType");
 			
-			MsgBean msgBean = new MsgBean();//回复信息
+			MsgBean msgBean = new MsgBean();
 			msgBean.setToUserName(fromUserName);
 			msgBean.setFromUserName(toUserName);
 			msgBean.setCreateTime(new Date().getTime());

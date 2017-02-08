@@ -10,18 +10,18 @@
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<link rel="stylesheet" type="text/css" href="../css/codeCheckIndex.css" />
 
-		<title>验证失败————话费充值平台</title>
+		<title>兑换失败————礼品兑换平台</title>
 	</head>
 
 	<body>
 		<header>
 			<div style="height: 1px;"></div>
 			<div id="headerBg"></div>
-<div id="headerTitle"><span style="font-size: 0.8em">欢迎使用</span><br/><span>话费充值平台</span></div>
+<div id="headerTitle"><span style="font-size: 0.8em">欢迎使用</span><br/><span>礼品兑换平台</span></div>
 		</header>
 		<div class="content">
-			<h2 class="failColor center">话费充值失败！</h2>
-			<p class="failColor">很抱歉，您输入的${retMsg}，请重新输入。如有疑问，请致电客服<a href="tel:4000552797">400-055-2797</a>。</p>
+			<h2 class="failColor center">兑换失败！</h2>
+			<p class="failColor">很抱歉，您输入的${retMsg}，请返回重新输入。如有疑问，请致电客服<a href="tel:4000552797">400-055-2797</a>。</p>
 			<p><a href="../exchangeCode/exchangeCode.do">点击这里</a>返回至首页</p>
 		</div>
 		<footer>

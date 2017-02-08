@@ -52,7 +52,7 @@ public class ReceivedController {
 		response.setContentType("text/html;charset=utf-8");
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
-		String method = request.getMethod();//获取请求方式
+		String method = request.getMethod();
 		
 		if("GET".equalsIgnoreCase(method)){
 			log.info("get请求...");

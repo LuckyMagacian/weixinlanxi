@@ -1,6 +1,7 @@
 package com.lanxi.weixin.codeMapper;
 
 
+import com.lanxi.weixin.bean.BranchActInfoBean;
 import com.lanxi.weixin.bean.ExchangeCodeBean;
 import org.apache.ibatis.annotations.Param;
 
@@ -39,4 +40,18 @@ public interface ExchangeCodeMapper {
                                       @Param("zdcs") int zdcs, @Param("yfcs") int yfcs,
                                       @Param("fsrq") String fsrq, @Param("fssj") String fssj,
                                       @Param("fsxx") String fsxx);
+
+    /**
+     * 查询规定时间段内, 指定机构号 手机号已兑换的次数
+     * @param branchid 机构号
+     * @param dhsjhm 手机号
+     * @param beginDate 起始日期
+     * @param endDate 结束日期
+     * @return
+     */
+    public abstract int getExchangeCountByDhsjBranchidDhsjhm(@Param("branchid") String branchid,
+                                                             @Param("dhsjhm") String dhsjhm,
+                                                             @Param("beginDate") String beginDate,
+                                                             @Param("endDate") String endDate);
+
 }

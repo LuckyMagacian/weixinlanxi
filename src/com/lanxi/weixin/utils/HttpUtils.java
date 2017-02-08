@@ -75,7 +75,7 @@ public final class HttpUtils {
 			PrintWriter out = new PrintWriter(httpConn.getOutputStream());
 			int i = 0;
 			Set<Map.Entry<String, String>> set = param.entrySet();
-			for (Map.Entry<String, String> entry:set){//以key=value&key=value形式发送参数
+			for (Map.Entry<String, String> entry:set){
 				out.print(entry.getKey());
 				out.print("=");
 				out.print(entry.getValue());
@@ -104,7 +104,7 @@ public final class HttpUtils {
 		log.info("发送post请求成功");
 		return result.toString();
 	}
-	// TODO 可以合并,或者调用减少代码重复率
+	
 	public static String sendPost(String url,Map<String,String> param,String charSet,String timeout){
 		StringBuffer result = new StringBuffer();
 		HttpURLConnection httpConn=null;
@@ -267,5 +267,59 @@ public final class HttpUtils {
 		}
 		return result.toString();
 	}
-	
+
+	/**
+	 * http Post 请求
+	 * @param url 地址
+	 * @param param 发送内容
+	 * @param charSet 字符编码
+	 * @param timeOut
+	 * @return
+	 */
+	public static String sendPostReq(String url, String param, String charSet, String timeOut) {
+
+		if (charSet == null || charSet.length() == 0){
+			charSet = "UTF-8";
+		}
+		StringBuffer result = new StringBuffer();
+
+		try {
+			URL httpurl = new URL(url);
+			HttpURLConnection httpConn = (HttpURLConnection) httpurl
+					.openConnection();
+			httpConn.setDoOutput(true);
+			httpConn.setDoInput(true);
+			byte[] ss = param.getBytes(charSet);
+			httpConn.setConnectTimeout(Integer.parseInt(timeOut));
+			httpConn.setReadTimeout(Integer.parseInt(timeOut));
+			OutputStream out = httpConn.getOutputStream();
+			out.write(ss);
+			out.flush();
+			out.close();
+			BufferedReader in = new BufferedReader(new InputStreamReader(
+					httpConn.getInputStream(), charSet));
+			String line;
+			while ((line = in.readLine()) != null) {
+				result.append(line);
+			}
+			in.close();
+		} catch(SocketTimeoutException e){
+			log.error("ERROR, 响应超时: ", e);
+			return "SocketTimeout";
+		} catch(ConnectTimeoutException e){
+			log.error("ERROR, 请求超时: ", e);
+			return "ConnectTimeout";
+		} catch (MalformedURLException e) {
+			log.error("ERROR, 发送get请求出错: ", e);
+			throw new RuntimeException("发送get请求出错, url: "+url, e);
+		} catch (UnsupportedEncodingException e) {
+			log.error("ERROR, 不支持的字符集charSet: ", e);
+			throw new RuntimeException("不支持的字符集charSet: "+charSet, e);
+		} catch (IOException e) {
+			log.error("ERROR, 发送post请求IO出错, url: ", e);
+			throw new RuntimeException("发送post请求IO出错，url: "+url, e);
+		}
+
+		return result.toString();
+	}
 }

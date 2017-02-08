@@ -56,7 +56,6 @@ public class ErWeiCodeManager {
 	 * @return
 	 */
 	public static String getJson(){
-		//{"expire_seconds":604800,"action_name":"QR_SCENE","action_info":{"scene":{"scene_id":123}}}
 		String json = "{\"expire_seconds\": 604800, \"action_name\": \"QR_SCENE\", \"action_info\": {\"scene\": {\"scene_id\": 123}}}";
 		return json;
 	}
