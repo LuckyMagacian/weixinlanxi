@@ -57,6 +57,7 @@ public class GameController {
 		try{
 			opBean = (OpenidDetailBean) session.getAttribute("opBean");
 			PageBean pageBean = new PageBean();
+			System.err.println(opBean);
 			pageBean.setOpenid(opBean.getOpenid());
 			pageBean.setPageNum(Integer.parseInt(pageNum));
 			pageBean.setNumPerPage(Integer.parseInt(numPerPage));
